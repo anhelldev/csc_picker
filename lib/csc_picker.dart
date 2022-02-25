@@ -653,18 +653,19 @@ class CSCPickerState extends State<CSCPicker> {
   Future<List<String?>> getStates() async {
     _states.clear();
     //print(_selectedCountry);
+    final code = _selectedCountry?.split('(')[1].split(')')[0];
     var response = await getResponse();
     var takeState = widget.flagState == CountryFlag.ENABLE ||
             widget.flagState == CountryFlag.SHOW_IN_DROP_DOWN_ONLY
         ? response
             .map((map) => Country.fromJson(map))
             .where(
-                (item) => item.emoji + "    " + item.name + ' ' + '(${item.countrycode})' == _selectedCountry)
+                (item) => item.countrycode == code)
             .map((item) => item.state)
             .toList()
         : response
             .map((map) => Country.fromJson(map))
-            .where((item) => item.name == _selectedCountry)
+            .where((item) => item.countrycode == code)
             .map((item) => item.state)
             .toList();
     var states = takeState as List;

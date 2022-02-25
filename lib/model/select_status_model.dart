@@ -27,7 +27,7 @@ class Country {
     emojiU = json['emojiU'];
     iso2 = json['iso2'];
     iso3 = json['iso3'];
-    countrycode = json['countrycode'];
+    countrycode = json['country_code'];
     frenchname = json['frenchname'];
     if (json['state'] != null) {
       state = [];
@@ -45,7 +45,7 @@ class Country {
     data['emojiU'] = this.emojiU;
     data['iso2'] = this.iso2;
     data['iso3'] = this.iso3;
-    data['countrycode'] = this.countrycode;
+    data['country_code'] = this.countrycode;
     data['frenchname'] = this.frenchname;
     if (this.state != null) {
       data['state'] = this.state!.map((v) => v.toJson()).toList();
