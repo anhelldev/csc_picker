@@ -6,7 +6,7 @@ class Country {
   String? iso2;
   String? iso3;
   String? frenchname;
-  int? countrycode;
+  String? countrycode;
   List<Region>? state;
 
   Country(
