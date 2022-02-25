@@ -634,13 +634,14 @@ class CSCPickerState extends State<CSCPicker> {
       var model = Country();
       model.name = data['name'];
       model.emoji = data['emoji'];
+      model.countrycode = data["country_code"];
       if (!mounted) return;
       setState(() {
         widget.flagState == CountryFlag.ENABLE ||
                 widget.flagState == CountryFlag.SHOW_IN_DROP_DOWN_ONLY
             ? _country.add(model.emoji! +
                 "    " +
-                model.name!) /* : _country.add(model.name)*/
+                model.name! + ' ' + '(${model.countrycode})') /* : _country.add(model.name)*/
             : _country.add(model.name);
       });
     });
@@ -658,7 +659,7 @@ class CSCPickerState extends State<CSCPicker> {
         ? response
             .map((map) => Country.fromJson(map))
             .where(
-                (item) => item.emoji + "    " + item.name == _selectedCountry)
+                (item) => item.emoji + "    " + item.name + ' ' + '(${item.countrycode})' == _selectedCountry)
             .map((item) => item.state)
             .toList()
         : response
@@ -690,7 +691,7 @@ class CSCPickerState extends State<CSCPicker> {
         ? response
             .map((map) => Country.fromJson(map))
             .where(
-                (item) => item.emoji + "    " + item.name == _selectedCountry)
+                (item) => item.emoji + "    " + item.name  + ' ' + '(${item .countrycode})' == _selectedCountry)
             .map((item) => item.state)
             .toList()
         : response
